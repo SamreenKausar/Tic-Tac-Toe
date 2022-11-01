@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
@@ -7,6 +10,7 @@
 body{
     background-color: black;
     color: white;
+    font-family: 'Raleway', sans-serif;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -30,13 +34,13 @@ h1{
 }
 
 .cell{
-    border-width: 5px;
+    border-width: 6px;
     border-color: white;
     padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 45px;
+    font-size: 60px;
    
 }
 .cell.top{
@@ -53,7 +57,33 @@ h1{
 }
 
 .scores{
+    font-size: 24px;
+    text-transform: uppercase;
     width: 50vw;
     display: flex;
     justify-content: space-around;
+}
+.scores p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.swap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+.player{
+}
+
+.colorX{
+    color: blueviolet;
+}
+.colorO{
+    color: gold;
 }
