@@ -11,20 +11,32 @@
     <h1>Tic Tac Toe</h1>
     <div class="container">
         <div class="cell top left">x</div>
-        <div class="cell top">x</div>
+        <div class="cell top">o</div>
         <div class="cell top right">x</div>
         <div class="cell left">x</div>
-        <div class="cell ">x</div>
-        <div class="cell right">x</div>
+        <div class="cell colorX">x</div>
+        <div class="cell right">o</div>
         <div class="cell bottom left">x</div>
-        <div class="cell bottom">x</div>
+        <div class="cell bottom colorO">o</div>
         <div class="cell bottom right">x</div>
     </div>
     <div class="scores">
-        <p class="player1">player1</p>
-        <p class="tie">tie</p>
-        <p class="player2">player2</p>
-        <div class="swap">single player</div>
+        <p class="player colorX">player 1
+            <span> 1</span>
+        </p>
+        <p class="tie">tie
+            <span>2</span>
+        </p>
+        <p class="player colorO">player 2
+            <span>1</span>
+        </p>
+        <div class="swap">
+            <label for="playerNumber">player</label>
+            <select name="playerNumber" id="playerNumber">
+                <option value="1p">1p</option>
+                <option value="2p">2p</option>
+            </select>
+        </div>
     </div>
 </body>
 </html>
