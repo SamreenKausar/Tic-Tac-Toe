@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap');
+:root{
+    --green-board-bg : #14BDAC;
+    --white-bg : #F7F7F7;
+    --wooden-border: #AF773A;
+    --marker : #141010;
+    --chalk-white: #E5E7E6;
+    --chalky-yellow: #e3f118;
+    --chalky-purple:  #9c56dd;
+}
 
 *{
     margin: 0;
@@ -9,23 +18,59 @@
 
 body{
     position: relative;
-    background-color: black;
-    color: white;
+    background-color: var(--white-bg);
+    color: var(--marker);
     font-family: 'Raleway', sans-serif;
+    font-size: 16px;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
+    gap: 2em;
 }
 h1{
+    margin-top: 0.5em;
     text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 2px solid white ;
+    border-bottom: 0.24rem solid var(--wooden-border) ;
 }
-
-
-.container{
+.gameControl{
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.radio{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    accent-color: var(--chalky-yellow);
+}
+#startGame{
+    padding: 8px;
+    background-color: var(--chalky-purple);
+    border-radius: 5px;
+    border: 1px solid var(--chalky-purple);
+    color: white;
+    font-size: 24px;
+    box-shadow:  rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 02px 2px 1px, rgba(0, 0, 0, 0.09) 3px 4px 2px;
+}
+.gameBoard{
+    background-color: var(--green-board-bg);
+    padding: 2em;
+    border: 0.8em solid var(--wooden-border);
+    width: 60vw;
+    height: 100%;
+    font-size: 1.8em;
+    font-weight: 800;
+    font-family: 'Grape Nuts', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.gameContainer{
     height: 450px;
     width:450px;
     display: grid;
@@ -35,8 +80,8 @@ h1{
 }
 
 .cell{
-    border-width: 6px;
-    border-color: white;
+    border-width: 0.2em;
+    border-color: var(--chalk-white);
     padding: 4px;
     display: flex;
     align-items: center;
@@ -58,7 +103,7 @@ h1{
 }
 
 .scores{
-    font-size: 24px;
+    
     text-transform: uppercase;
     width: 50vw;
     display: flex;
@@ -83,32 +128,23 @@ h1{
 }
 
 .colorX{
-    color: blueviolet;
+    color: var(--chalky-purple);
 }
 .colorO{
-    color: gold;
+    color: var(--chalky-yellow);
 }
 .drawColor {
-    color: black;
+    color: var(--marker);
 }
-.winner {
-/* position: absolute;
-top: 0;
-left: 0;
-height: 100vh;
-width: 100vw;
-background-color: rgb(0, 0, 0, 0.2);
-font-size: 80px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center; */
+.winner{
+    margin-bottom: 1.1em;
 }
 .hidden{
-    visibility: hidden;
+    visibility: hidden  ;
 }
 #win {
-    background-color: rgb(255, 255, 255, 0.2);
-    padding: 20px;
+    
+    padding: 0.5em;
+    font-size: 40px;
     text-align: center;
 }
