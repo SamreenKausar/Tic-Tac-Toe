@@ -1,11 +1,48 @@
-// game Board module
+// GAME BOARD OBJECT
 const gameBoard = (function(){
+    const gameboard =[];
+    const addingValue = function(index, value){
+        
+    }
+    return {
+        addingValue
+    }
+});
+
+
+// PLAYERS FACTORY FUNCTION
+
+// const players = function(player, score){
+  
+
+// DISPLAY CONTROLLER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// game Board module
+const gameBoardController = (function(){
     //properties
     const cells = document.querySelectorAll('.cell');
     const winMessage =document.querySelector('.winner');
     const winElement =document.querySelector("#win");
-    const X = 'x';
-    const O = 'o';
+    const X = 'X';
+    const O = 'O';
     const xColor = 'colorX';
     const oColor = 'colorO';
     const drawColor ='drawColor';
@@ -20,6 +57,7 @@ const gameBoard = (function(){
         [2,4,6]
     ]
     let circleTurn = false;
+
     cellArray = [...cells];
     //Methods
      const startGame = function(){
@@ -71,7 +109,7 @@ const gameBoard = (function(){
             winMessage.classList.add(textColor);
         }else {
             winMessage.classList.toggle('hidden');
-            winElement.textContent = `${currentText}Wins`;
+            winElement.textContent = `${currentText} Wins`;
             winMessage.classList.add(textColor);
   
         }
@@ -81,8 +119,10 @@ const gameBoard = (function(){
             return element.classList.contains(xColor) || element.classList.contains(oColor);
         });
     }
+
+    
     return{startGame}
    
 })();
-
- gameBoard.startGame();
+const startGame  = document.querySelector('#startGame');
+ startGame.addEventListener('click',gameBoardController.startGame);
