@@ -10,38 +10,42 @@
 </head>
 <body>
     <h1>Tic Tac Toe</h1>
-    <div class="winner hidden">
-        <p id ="win"></p>
+    <div class="gameControl">
+        <input class ="radio" id ="single"type="radio" name="radio" value="1" checked>
+        <label for="single">Single Player: </label>
+        <input class ="radio"id ="two"type="radio" name="radio" value="2">
+        <label for="two">Two Players: </label>
+        <input id= "startGame" type="button" value="Start Game">
     </div>
-    <div class="container">
-        <div class="cell top left"></div>
-        <div class="cell top"></div>
-        <div class="cell top right"></div>
-        <div class="cell left"></div>
-        <div class="cell "></div>
-        <div class="cell right"></div>
-        <div class="cell bottom left"></div>
-        <div class="cell bottom "></div>
-        <div class="cell bottom right"></div>
+   <div class="gameBoard">
+    
+        <div class="scores">
+            <p class="player colorX">player (X)
+                <span> 0</span>
+            </p>
+            <p class="tie">tie
+                <span>0</span>
+            </p>
+            <p class="player colorO">computer (O)
+                <span>0</span>
+            </p>
+        </div>
+        <div class="winner hidden">
+            <p id ="win"></p>
+        </div>
+        <div class="gameContainer">
+            <div class="cell top left"></div>
+            <div class="cell top"></div>
+            <div class="cell top right"></div>
+            <div class="cell left"></div>
+            <div class="cell "></div>
+            <div class="cell right"></div>
+            <div class="cell bottom left"></div>
+            <div class="cell bottom "></div>
+            <div class="cell bottom right"></div>
+        </div>
     </div>
-    <div class="scores">
-        <p class="player colorX">player (X)
-            <span> 1</span>
-        </p>
-        <p class="tie">tie
-            <span>2</span>
-        </p>
-        <p class="player colorO">computer (O)
-            <span>1</span>
-        </p>
-        <!-- <div class="swap">
-            <label for="playerNumber">player</label>
-            <select name="playerNumber" id="playerNumber">
-                <option value="1p">1p</option>
-                <option value="2p">2p</option>
-            </select>
-        </div> -->
-    </div>
+    
     
 </body>
 </html>
