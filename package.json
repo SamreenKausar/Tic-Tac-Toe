@@ -1,0 +1,27 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamreenKausar/Tic-Tac-Toe.git"
+  },
+  "author": "SamreenK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamreenKausar/Tic-Tac-Toe/issues"
+  },
+  "homepage": "https://github.com/SamreenKausar/Tic-Tac-Toe#readme",
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.7.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  }
+}
