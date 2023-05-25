@@ -12,35 +12,52 @@ const gameBoardModule = (function gameBoardModule() {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  const addMarksinArray = (index, mark) => {
+  const addMarksinArray = function addMarksinArray(index, mark) {
     if (gameboard[index] === undefined) {
       gameboard[index] = mark;
     }
   };
-  const checkForWin = (mark) => winningCombinations.some(
-    (combination) => combination.every(
+  const checkForWin = function checkForWin(mark) {
+    return winningCombinations.some((combination) => combination.every(
       (index) => gameboard[index] === mark,
-    ),
-  );
-  return { gameboard, addMarksinArray, checkForWin };
+    ));
+  };
+  const isDraw = function isDraw() {
+    return gameboard.every((value) => (value === 'X' || value === 'O'));
+  };
+  return {
+    gameboard, addMarksinArray, checkForWin, isDraw,
+  };
 }());
 
 // Dom Manupulation Module
 
 const displayGameboard = (function displayGameboard() {
   const cells = document.querySelectorAll('.cell');
-
-  const paintCell = () => {
+  const winMessage = document.querySelector('.winner');
+  const winElement = document.querySelector('#win');
+  const paintCell = function paintCell() {
     cells.forEach((cell) => {
       cell.textContent = gameBoardModule.gameboard[cell.dataset.number];
-      if (gameBoardModule.gameboard[cell.dataset.number] === 'x') {
+      if (gameBoardModule.gameboard[cell.dataset.number] === 'X') {
         cell.classList.add('colorX');
       } else {
         cell.classList.add('colorO');
       }
     });
   };
-  return { paintCell };
+  const endGame = function endGame(draw, textColor, mark) {
+    if (draw) {
+      winMessage.classList.toggle('hidden');
+      winElement.textContent = mark;
+      winMessage.classList.add(textColor);
+    } else {
+      winMessage.classList.toggle('hidden');
+      winElement.textContent = `${mark} Wins`;
+      winMessage.classList.add(textColor);
+    }
+  };
+  return { paintCell, endGame };
 }());
 
 // player factory function
@@ -56,23 +73,31 @@ const createPlayer = (name, mark) => {
 // game Control Module
 
 const gameControl = (function gameControl() {
-  const circleTurn = false;
-  const win = false;
-  const draw = false;
+  let circleTurn = false;
   const cells = document.querySelectorAll('.cell');
+  const handleClick = function handleClick(e) {
+    const index = e.target.number;
+    console.log(index);
+    const mark = circleTurn ? 'O' : 'X';
+    const textColor = circleTurn ? 'colorX' : 'colorO';
+    gameBoardModule.addMarksinArray(index, mark);
+    displayGameboard.paintCell();
+    if (gameBoardModule.checkForWin(mark)) {
+      displayGameboard.endGame(false, textColor, mark);
+    }
+    if (gameBoardModule.isDraw) {
+      displayGameboard.endGame(true, 'drawColor', mark);
+    } else {
+      circleTurn = !circleTurn;
+    }
+  };
   const startGame = function startGame() {
     cells.forEach((cell) => {
       cell.addEventListener('click', handleClick, { once: true });
     });
   };
-  const handleClick = function handleClick(e) {
-    const index = e.target.number;
-    console.log(index);
-    const mark = circleTurn ? 'O' : 'X';
-    gameBoardModule.addMarksinArray(index, mark);
-    displayGameboard.paintCell();
-  };
-  return{startGame}
+
+  return { startGame };
 }());
 
 const startBtn = document.querySelector('#startGame');
