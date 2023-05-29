@@ -23,7 +23,7 @@ const gameBoardModule = (function gameBoardModule() {
     ));
   };
   const isDraw = function isDraw() {
-    return gameboard.every((value) => (value === 'X' || value === 'O'));
+    return gameboard.every((value) => (value ? 'X' : 'O'));
   };
   return {
     gameboard, addMarksinArray, checkForWin, isDraw,
@@ -39,9 +39,9 @@ const displayGameboard = (function displayGameboard() {
   const paintCell = function paintCell() {
     cells.forEach((cell) => {
       cell.textContent = gameBoardModule.gameboard[cell.dataset.number];
-      if (gameBoardModule.gameboard[cell.dataset.number] === 'X') {
+      if (cell.textContent === 'X') {
         cell.classList.add('colorX');
-      } else {
+      } if (cell.textContent === 'O') {
         cell.classList.add('colorO');
       }
     });
@@ -76,17 +76,13 @@ const gameControl = (function gameControl() {
   let circleTurn = false;
   const cells = document.querySelectorAll('.cell');
   const handleClick = function handleClick(e) {
-    const index = e.target.number;
-    console.log(index);
+    const index = e.target.dataset.number;
     const mark = circleTurn ? 'O' : 'X';
-    const textColor = circleTurn ? 'colorX' : 'colorO';
+    const textColor = circleTurn ? 'colorO' : 'colorX';
     gameBoardModule.addMarksinArray(index, mark);
     displayGameboard.paintCell();
     if (gameBoardModule.checkForWin(mark)) {
       displayGameboard.endGame(false, textColor, mark);
-    }
-    if (gameBoardModule.isDraw) {
-      displayGameboard.endGame(true, 'drawColor', mark);
     } else {
       circleTurn = !circleTurn;
     }
