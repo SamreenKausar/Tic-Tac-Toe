@@ -57,7 +57,13 @@ const displayGameboard = (function displayGameboard() {
       winMessage.classList.add(textColor);
     }
   };
-  return { paintCell, endGame };
+  const clearCells = function clearCell() {
+    cells.forEach((cell) => {
+      cell.textContent = '';
+      cell.classList.remove('colorX', 'colorO');
+    });
+  };
+  return { paintCell, endGame, clearCells };
 }());
 
 // player factory function
@@ -83,6 +89,7 @@ const gameControl = (function gameControl() {
     displayGameboard.paintCell();
     if (gameBoardModule.checkForWin(mark)) {
       displayGameboard.endGame(false, textColor, mark);
+      displayGameboard.clearCells();
     } else {
       circleTurn = !circleTurn;
     }
