@@ -63,32 +63,52 @@ const displayGameboard = (function displayGameboard() {
       cell.classList.remove('colorX', 'colorO');
     });
   };
-  return { paintCell, endGame, clearCells };
+  const updateScore = function updateScore(score, name) {
+    const span = document.getElementById(name);
+    span.textContent = score;
+  };
+  return {
+    paintCell, endGame, clearCells, updateScore,
+  };
 }());
 
 // player factory function
 
 const createPlayer = (name, mark) => {
   let score = 0;
+  const color = `color${mark}`;
+  const getscore = () => score;
   const increaseScore = () => {
     score += 1;
   };
-  return { name, mark, increaseScore };
+  return {
+    name, mark, color, getscore, increaseScore,
+  };
 };
 
 // game Control Module
 
 const gameControl = (function gameControl() {
+  const player1 = createPlayer('player1', 'X');
+  const player2 = createPlayer('player2', 'O');
   let circleTurn = false;
   const cells = document.querySelectorAll('.cell');
   const handleClick = function handleClick(e) {
     const index = e.target.dataset.number;
-    const mark = circleTurn ? 'O' : 'X';
-    const textColor = circleTurn ? 'colorO' : 'colorX';
+    const mark = circleTurn ? player2.mark : player1.mark;
+    const textColor = circleTurn ? player2.color : player1.color;
     gameBoardModule.addMarksinArray(index, mark);
     displayGameboard.paintCell();
     if (gameBoardModule.checkForWin(mark)) {
+      if (mark === 'X') {
+        player1.increaseScore();
+        displayGameboard.updateScore(player1.getscore(), player1.name);
+      } else {
+        player2.increaseScore();
+        displayGameboard.updateScore(player2.getscore(), player2.name);
+      }
       displayGameboard.endGame(false, textColor, mark);
+
       displayGameboard.clearCells();
     } else {
       circleTurn = !circleTurn;
